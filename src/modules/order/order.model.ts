@@ -19,10 +19,7 @@ const orderSchema = new Schema(
           type: Number,
           required: true,
           min: 1,
-        },
-        priceAtPurchase: {
-          type: Number,
-          required: true,
+          default: 1,
         },
       },
     ],
@@ -34,7 +31,7 @@ const orderSchema = new Schema(
 
     paymentStatus: {
       type: String,
-      enum: ["pending", "paid", "failed", "refunded"],
+      enum: ["pending", "paid", "failed"],
       default: "pending",
     },
 

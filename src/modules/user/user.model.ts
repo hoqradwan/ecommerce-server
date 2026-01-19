@@ -6,6 +6,12 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, required: true, enum: ["user", "admin"], default: "user" },
+    stripe_customer_id: {
+      // > stripe er customer id ...
+      type: String,
+      required: false,
+      default: null,
+    },
 }, { timestamps: true });
 
 export const User = mongoose.model('User', userSchema);
