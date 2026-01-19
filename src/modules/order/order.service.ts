@@ -5,6 +5,7 @@ import AppError from "../../errors/AppError";
 import { IOrderProduct } from "./order.interface";
 import { User } from "../user/user.model";
 import { stripe } from "../payment/stripe.config";
+import { OrderStatus } from "./order.constant";
 
 
 interface StripeOrderMeta {
@@ -49,8 +50,7 @@ export const createOrderInToDB = async (
           user: user.id,
           products: orderProducts,
           totalAmount,
-          paymentStatus: "pending",
-          orderStatus: "processing",
+          orderStatus: OrderStatus.processing,
         },
       ],
       { session }
@@ -94,8 +94,9 @@ export const createOrderInToDB = async (
         },
       ],
       metadata: {
-        orderId: order[0]._id.toString(),
-        userId: user.id.toString(),
+        referenceId: order[0]._id.toString(),
+        referenceFor: "Order",
+        user: JSON.stringify(user),
         currency: "usd",
         amount: totalAmount.toString(),
 

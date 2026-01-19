@@ -5,6 +5,7 @@ import globalErrorHandler from "./middlewares/globalErrorHandler";
 import notFound from "./middlewares/notFound";
 import router from "./routes";
 import { logger, logHttpRequests } from "./logger/logger";
+import webhookHandler from "./modules/payment/stripe.webhook";
 
 // Create an Express application
 const app: Application = express();
@@ -23,7 +24,7 @@ app.use(
 app.use(express.static("public"));
 app.use(logHttpRequests);
 
-
+app.post('/api/v1/stripe/webhook', express.raw({ type: 'application/json' }), webhookHandler);
 //application router
 app.use("/api/v1",router);
 
