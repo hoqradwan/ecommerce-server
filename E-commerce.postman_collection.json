@@ -1,0 +1,961 @@
+{
+  "info": {
+    "_postman_id": "4537296c-5edb-4056-9735-d8aa7831d0eb",
+    "name": "E-commerce",
+    "description": "An e-commerce server built with Express JS and MongoDB. It includes user registration, login and authorization based on user role. It can create and retrieve products, make orders and handle payment reception via stripe.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36734130",
+    "_collection_link": "https://go.postman.co/collection/36734130-4537296c-5edb-4056-9735-d8aa7831d0eb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"Bob\",\r\n    \"email\" : \"bob@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/register",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\" : \"Bob\",\r\n    \"email\" : \"bob@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/v1/user/register",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "313"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"139-C7CnxpAMxBnp4pwbDI8sUR71G0E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 15 Jan 2026 09:53:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"name\": \"Bob\",\n        \"email\": \"bob@gmail.com\",\n        \"password\": \"$2b$10$WBSEsi30nwwZwDQS/TdSLevGFjQwKahXiJQsJdsdA9tBn4wpjkU7q\",\n        \"_id\": \"6968b8fddf2de3d4decd08ee\",\n        \"createdAt\": \"2026-01-15T09:53:01.515Z\",\n        \"updatedAt\": \"2026-01-15T09:53:01.515Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "register (admin)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"admin\",\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"role\" : \"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/register",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\" : \"admin\",\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"role\" : \"admin\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/user/register",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "332"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"14c-FcQqesoRS+i93CLfRzCjZ255XYY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 15 Jan 2026 13:07:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"name\": \"admin\",\n        \"email\": \"admin@gmail.com\",\n        \"password\": \"$2b$10$KX8bCkZRrupNx4u9U/yRwe7D.Zfjwo9BgWdSK7I4HPDp1jiZ3EUwy\",\n        \"role\": \"admin\",\n        \"_id\": \"6968e67984581b7f3d39b444\",\n        \"createdAt\": \"2026-01-15T13:07:05.466Z\",\n        \"updatedAt\": \"2026-01-15T13:07:05.466Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();\r",
+                  "const token = response.data.token;\r",
+                  "\r",
+                  "pm.globals.set(\"ecomUserToken\", token)"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" :\"bob@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\" :\"bob@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/v1/user/login",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "user",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "312"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"138-2UJRJWrDD9z96cJiywWTxzCUgB0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 15 Jan 2026 10:16:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"User logged in successfully\",\n    \"data\": {\n        \"_id\": \"6968b8fddf2de3d4decd08ee\",\n        \"name\": \"Bob\",\n        \"email\": \"bob@gmail.com\",\n        \"password\": \"$2b$10$WBSEsi30nwwZwDQS/TdSLevGFjQwKahXiJQsJdsdA9tBn4wpjkU7q\",\n        \"createdAt\": \"2026-01-15T09:53:01.515Z\",\n        \"updatedAt\": \"2026-01-15T09:53:01.515Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "login (admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();\r",
+                  "const token = response.data.token;\r",
+                  "\r",
+                  "pm.globals.set(\"ecomAdminToken\", token)"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\" : \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\" : \"123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/user/login",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "user",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "575"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"23f-kUDJXTv0UT8Wcus7skLXiZLHkQU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 15 Jan 2026 13:02:36 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"User logged in successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"6968e512274f4f6931087ee1\",\n            \"name\": \"admin\",\n            \"email\": \"admin@gmail.com\",\n            \"password\": \"$2b$10$micIi8x2KsJVbcLVeC/h1eWrccxrc49hbbpfvMdNPkrYds8RxfnrG\",\n            \"role\": \"user\",\n            \"createdAt\": \"2026-01-15T13:01:06.860Z\",\n            \"updatedAt\": \"2026-01-15T13:01:06.860Z\",\n            \"__v\": 0\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjhlNTEyMjc0ZjRmNjkzMTA4N2VlMSIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY4NDgyMTU2LCJleHAiOjE3NjkwODY5NTZ9.tdgY5mb1GCFh5srVZb4P8ZsY6T_e_1dieYFq2Tjc-kA\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "getSelfInfo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ecomUserToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjhiOGZkZGYyZGUzZDRkZWNkMDhlZSIsIm5hbWUiOiJCb2IiLCJlbWFpbCI6ImJvYkBnbWFpbC5jb20iLCJpYXQiOjE3Njg0NzM0NjEsImV4cCI6MTc2OTA3ODI2MX0.1N68LUVt6zlEmPjD6N9-3oEoQJfhkND68EFeDmJfyKE",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/user/me",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjhiOGZkZGYyZGUzZDRkZWNkMDhlZSIsIm5hbWUiOiJCb2IiLCJlbWFpbCI6ImJvYkBnbWFpbC5jb20iLCJpYXQiOjE3Njg0NzM0NjEsImV4cCI6MTc2OTA3ODI2MX0.1N68LUVt6zlEmPjD6N9-3oEoQJfhkND68EFeDmJfyKE",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/user/me",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "user",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "293"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"125-+XHemUp+9eRB4gYh+jMwdMoRxVU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Jan 2026 06:55:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"Profile information retrieved successfully\",\n    \"data\": {\n        \"_id\": \"696eedc60d7f2ddf87da7ce7\",\n        \"name\": \"nob\",\n        \"email\": \"nob@gmail.com\",\n        \"role\": \"user\",\n        \"stripe_customer_id\": null,\n        \"createdAt\": \"2026-01-20T02:51:50.147Z\",\n        \"updatedAt\": \"2026-01-20T02:51:50.147Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "createProduct",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ecomAdminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Mouse\",\r\n  \"description\": \"Wired mouse\",\r\n  \"price\": 100,\r\n  \"stock\": 50\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/product",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Wireless Mouse\",\r\n  \"description\": \"Ergonomic wireless mouse with long battery life\",\r\n  \"price\": 1200,\r\n  \"stock\": 50\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/product",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "314"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"13a-VDfTxvPu0Xoa+vEgDQwZx3ATRxs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 15 Jan 2026 13:11:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 201,\n    \"message\": \"Product created successfully\",\n    \"data\": {\n        \"name\": \"Wireless Mouse\",\n        \"description\": \"Ergonomic wireless mouse with long battery life\",\n        \"price\": 1200,\n        \"stock\": 50,\n        \"_id\": \"6968e785551b883d5d50191a\",\n        \"createdAt\": \"2026-01-15T13:11:33.150Z\",\n        \"updatedAt\": \"2026-01-15T13:11:33.150Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "getAllProducts",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ecomToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/product",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/product",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "319"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"13f-4mcaMzS07XpbWEZ3BUyAGBTp0rI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 15 Jan 2026 13:23:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 201,\n    \"message\": \"Products retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6968e785551b883d5d50191a\",\n            \"name\": \"Wireless Mouse\",\n            \"description\": \"Ergonomic wireless mouse with long battery life\",\n            \"price\": 1200,\n            \"stock\": 50,\n            \"createdAt\": \"2026-01-15T13:11:33.150Z\",\n            \"updatedAt\": \"2026-01-15T13:11:33.150Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "createOrder",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ecomUserToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"products\": [\r\n    {\r\n      \"product\": \"696c5997e0c1b9d075c71b34\",\r\n      \"quantity\": 2\r\n    }\r\n  ]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/order",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "order"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"products\": [\r\n    {\r\n      \"product\": \"696c5997e0c1b9d075c71b34\",\r\n      \"quantity\": 2\r\n    }\r\n  ]\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/order",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "order"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "842"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"34a-uuc2jD5OBHr5J3Roail0HM9Dd9I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Jan 2026 01:52:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 201,\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"orderId\": {\n            \"user\": \"696dbbbb3e032f3a390e24ed\",\n            \"products\": [\n                {\n                    \"product\": \"696c5997e0c1b9d075c71b34\",\n                    \"quantity\": 2,\n                    \"_id\": \"696edfee70e4b6ad21b099d7\"\n                }\n            ],\n            \"totalAmount\": 2400,\n            \"orderStatus\": \"processing\",\n            \"_id\": \"696edfee70e4b6ad21b099d6\",\n            \"createdAt\": \"2026-01-20T01:52:46.115Z\",\n            \"updatedAt\": \"2026-01-20T01:52:46.115Z\",\n            \"__v\": 0\n        },\n        \"checkoutUrl\": \"https://checkout.stripe.com/c/pay/cs_test_a11armCnUx6SgLUrzkyItyhhrGm1er45EGFxgkhmHlQtOvsEGoppiHDkWL#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0VnRkZlNERlNJMldPQn88TnNSdTFtTTVQMGlrSXFUQ1JJPTVKQnxRVmd1SzFnaGNVQGlHTEBAN31vSGxAbzBEdWNxfFRSTzVpdXQxNW8wSmlIdFVXd1R%2FNTVwSEpQSjVVdScpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "getAllOrders",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/order",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "order"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "736"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2e0-8hskhIutSZeH4J3nJlYP/4+wflI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Jan 2026 02:54:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"statusCode\": 201,\n    \"message\": \"Orders retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"696edb3228d38b8e062a815c\",\n            \"user\": null,\n            \"products\": [\n                {\n                    \"product\": {\n                        \"_id\": \"696c5997e0c1b9d075c71b34\",\n                        \"name\": \"Wireless Headphone\",\n                        \"price\": 1200\n                    },\n                    \"quantity\": 2,\n                    \"_id\": \"696edb3228d38b8e062a815d\"\n                }\n            ],\n            \"totalAmount\": 2400,\n            \"orderStatus\": \"processing\",\n            \"createdAt\": \"2026-01-20T01:32:34.638Z\",\n            \"updatedAt\": \"2026-01-20T01:32:34.638Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"696edfee70e4b6ad21b099d6\",\n            \"user\": null,\n            \"products\": [\n                {\n                    \"product\": {\n                        \"_id\": \"696c5997e0c1b9d075c71b34\",\n                        \"name\": \"Wireless Headphone\",\n                        \"price\": 1200\n                    },\n                    \"quantity\": 2,\n                    \"_id\": \"696edfee70e4b6ad21b099d7\"\n                }\n            ],\n            \"totalAmount\": 2400,\n            \"orderStatus\": \"processing\",\n            \"createdAt\": \"2026-01-20T01:52:46.115Z\",\n            \"updatedAt\": \"2026-01-20T01:52:46.115Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "id",
+      "value": "1"
+    },
+    {
+      "key": "base_url",
+      "value": "https://template.postman-echo.com"
+    }
+  ]
+}
