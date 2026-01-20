@@ -6,7 +6,7 @@
   "scripts": {
     "start:prod": "node ./dist/server.js",
     "dev": "nodemon src/server.ts",
-    "stripe": "stripe listen --forward-to=http://localhost:5000/api/v1/stripe/webhook",
+    "stripe": "stripe listen --forward-to=http://localhost:9000/api/v1/stripe/webhook",
     "dev:stripe": "concurrently \"ts-node-dev --respawn --transpile-only src/server.ts\" \"npm run stripe\"",
     "build": "tsc",
     "git": "bash git-commit.sh",
