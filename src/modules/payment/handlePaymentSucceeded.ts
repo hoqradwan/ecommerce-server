@@ -5,10 +5,9 @@ import { IUser } from "../user/user.interface";
 import httpStatus from "http-status";
 import { PaymentTransaction } from "./paymentTransaction.model";
 import { TPaymentStatus, TTransactionFor } from "./paymentTransaction.constant";
-import { IOrder } from "../order/order.interface";
 import { Order } from "../order/order.model";
 import { OrderStatus } from "../order/order.constant";
-import { ObjectId, Types } from "mongoose";
+import {  Types } from "mongoose";
 
 export const handlePaymentSucceeded = async (session: Stripe.Checkout.Session) => {     
      try {

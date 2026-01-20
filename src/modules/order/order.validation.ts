@@ -11,10 +11,3 @@ export const createOrderValidationSchema = z.object({
     .min(1, "At least one product is required"),
 });
 
-
-export const updateOrderStatusSchema = z.object({
-  paymentStatus: z.enum(["pending", "paid", "failed", "refunded"]).optional(),
-  orderStatus: z
-    .enum(["processing", "shipped", "delivered", "cancelled"])
-    .optional(),
-});

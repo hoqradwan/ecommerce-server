@@ -33,7 +33,7 @@ const orderSchema = new Schema(
       enum: ["processing", "confirmed", "completed", "cancelled"],
       default: "processing",
     },
-    paymentTransactionId: { //🔗 Same as PaymentId of kappes
+    paymentTransactionId: { 
       type: Schema.Types.ObjectId,
       ref: 'PaymentTransaction',
     }

@@ -96,7 +96,7 @@ export const createOrderInToDB = async (
         amount: totalAmount.toString(),
 
       },
-      success_url: "http://localhost:3000/success",
+      success_url: "../../views/success.ejs",
       cancel_url: "http://localhost:3000/cancel",
     });
 
@@ -120,6 +120,6 @@ export const getAllOrdersFromDB = async (userData: any) => {
   }
   const orders = await Order.find()
     .populate("user", "name email")
-    .populate("products.product", "name price");  
+    .populate("products.product", "name price");
   return orders;
 }
