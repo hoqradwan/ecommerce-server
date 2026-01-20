@@ -12,7 +12,4 @@ export interface IOrder {
   products: IOrderProduct[];
   totalAmount: number;
   orderStatus: OrderStatus;
-  paymentIntentId?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 }

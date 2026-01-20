@@ -33,10 +33,10 @@ const orderSchema = new Schema(
       enum: ["processing", "confirmed", "completed", "cancelled"],
       default: "processing",
     },
-
-    paymentIntentId: {
-      type: String,
-    },
+    paymentTransactionId: { //🔗 Same as PaymentId of kappes
+      type: Schema.Types.ObjectId,
+      ref: 'PaymentTransaction',
+    }
   },
   { timestamps: true }
 );

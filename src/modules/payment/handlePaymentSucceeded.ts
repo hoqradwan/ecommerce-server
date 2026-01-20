@@ -8,6 +8,7 @@ import { TPaymentStatus, TTransactionFor } from "./paymentTransaction.constant";
 import { IOrder } from "../order/order.interface";
 import { Order } from "../order/order.model";
 import { OrderStatus } from "../order/order.constant";
+import { ObjectId, Types } from "mongoose";
 
 export const handlePaymentSucceeded = async (session: Stripe.Checkout.Session) => {
      
@@ -73,16 +74,16 @@ export const handlePaymentSucceeded = async (session: Stripe.Checkout.Session) =
 };
 
 async function updateOrderInformation(
-     orderId: string,
-     paymentTransactionId: string,
+     orderId: Types.ObjectId,
+     paymentTransactionId: Types.ObjectId,
 ){
 
      // isBookingExists = await Order.findOne({ _id: orderId });
 
-     const updatedOrder:IOrder = await Order.findByIdAndUpdate(orderId, { 
+     const updatedOrder = await Order.findByIdAndUpdate(orderId, { 
           /* update fields */ 
           paymentTransactionId : paymentTransactionId,
-          status : OrderStatus.confirmed
+          orderStatus : OrderStatus.confirmed
      }, { new: true });
 
    

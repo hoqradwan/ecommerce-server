@@ -9,7 +9,7 @@ export const handleFailedPayment = async (session: Stripe.Checkout.Session | any
 
     const { referenceId, referenceFor, user} = session.metadata;
     
-    let _user:IUser = JSON.parse(user);
+    const _user = JSON.parse(user);
 
     const thisCustomer = await User.findOne({ _id: _user.userId });
 

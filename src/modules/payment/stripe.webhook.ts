@@ -1,22 +1,15 @@
 //@ts-ignore
 import { Request, Response } from 'express';
-//@ts-ignore
-import { StatusCodes } from 'http-status-codes';
-//@ts-ignore
 import Stripe from 'stripe';
-import { config } from '../../../config';
-import stripe from '../../../config/stripe.config';
 import { handlePaymentSucceeded } from './handlePaymentSucceeded';
 import { handleFailedPayment } from './handleFailedPayment';
-import { handleSubscriptionCancellation } from './handleSubscriptionCancellation';
-import { handleSuccessfulPayment } from './handleSuccessfulPayment';
-import { handleSubscriptionDates } from './handleSubscriptionDates';
-import { handleTrialWillEnd } from './handleTrialWillEnd';
+import { stripe } from './stripe.config';
+
 
 const webhookHandler = async (req: Request, res: Response): Promise<void> => {
      console.log('Webhook received');
      const sig = req.headers['stripe-signature'];
-     const webhookSecret = config.stripe.webhookSecret;
+     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
      if (!webhookSecret) {
           console.error('Stripe webhook secret not set');
