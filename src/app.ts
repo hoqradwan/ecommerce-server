@@ -11,6 +11,7 @@ import webhookHandler from "./modules/payment/stripe.webhook";
 const app: Application = express();
 
 
+app.post('/api/v1/stripe/webhook', express.raw({ type: 'application/json' }), webhookHandler);
 //parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +25,7 @@ app.use(
 app.use(express.static("public"));
 app.use(logHttpRequests);
 
-app.post('/api/v1/stripe/webhook', express.raw({ type: 'application/json' }), webhookHandler);
+
 //application router
 app.use("/api/v1",router);
 

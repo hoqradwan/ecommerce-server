@@ -10,10 +10,8 @@ import { Order } from "../order/order.model";
 import { OrderStatus } from "../order/order.constant";
 import { ObjectId, Types } from "mongoose";
 
-export const handlePaymentSucceeded = async (session: Stripe.Checkout.Session) => {
-     
+export const handlePaymentSucceeded = async (session: Stripe.Checkout.Session) => {     
      try {
-
          const { 
                referenceId,
                user,
@@ -23,7 +21,7 @@ export const handlePaymentSucceeded = async (session: Stripe.Checkout.Session) =
                ...rest  // 👈 This captures everything else
           }: any = session.metadata;
           // userId // for sending notification .. 
-
+          console.log(session.metadata);
           if(!session.metadata){
                return
           }
@@ -53,6 +51,8 @@ export const handlePaymentSucceeded = async (session: Stripe.Checkout.Session) =
                paymentIntent: paymentIntent,
                amount: amount,
                currency,
+               referenceFor: TTransactionFor.Order,
+               referenceId: new Types.ObjectId(referenceId),
                paymentStatus: TPaymentStatus.completed,
                gatewayResponse: session,
           });

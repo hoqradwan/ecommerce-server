@@ -8,11 +8,6 @@ import { stripe } from "../payment/stripe.config";
 import { OrderStatus } from "./order.constant";
 
 
-interface StripeOrderMeta {
-  userId: string;
-  products: { product: string; quantity: number }[];
-  paymentIntentId: string;
-}
 
 export const createOrderInToDB = async (
   products: IOrderProduct[],
@@ -106,7 +101,7 @@ export const createOrderInToDB = async (
     });
 
     return {
-      orderId: order[0]._id,
+      orderId: order[0],
       checkoutUrl: checkoutSession.url,
     };
   } catch (error) {
@@ -116,94 +111,15 @@ export const createOrderInToDB = async (
   }
 };
 
-
-// import AppError from "../../errors/AppError";
-// import { Product } from "../product/product.model";
-// import { IOrder } from "./order.interface";
-// import { Order } from "./order.model";
-
-// import mongoose from "mongoose";
-
-// export const createOrderInToDB = async (
-//   orderData: IOrder,
-//   userId: string,
-// paymentIntentId: string
-// ) => {
-//   const session = await mongoose.startSession();
-//   session.startTransaction();
-
-//   try {
-//     const { products } = orderData;
-//     let totalAmount = 0;
-//     const listedProducts = [];
-
-//     for (const item of products) {
-//       const product = await Product.findOneAndUpdate(
-//         {
-//           _id: item.product,
-//           stock: { $gte: item.quantity },
-//         },
-//         {
-//           $inc: { stock: -item.quantity },
-//         },
-//         {
-//           new: true,
-//           session,
-//         }
-//       );
-
-//       if (!product) {
-//         throw new AppError(
-//           400,
-//           `Insufficient stock for product ${item.product}`
-//         );
-//       }
-
-//       totalAmount += product.price * item.quantity;
-
-//       listedProducts.push({
-//         product: product._id,
-//         quantity: item.quantity,
-//       });
-//     }
-
-//     const [order] = await Order.create(
-//       [
-//         {
-//           user: userId,
-//           products: listedProducts,
-//           totalAmount,
-//         },
-//       ],
-//       { session }
-//     );
-
-//     await session.commitTransaction();
-//     session.endSession();
-
-//     return order;
-//   } catch (error) {
-//     await session.abortTransaction();
-//     session.endSession();
-//     throw error;
-//   }
-// };
-
-
-// export const getMyOrders = async (req: Request, res: Response) => {
-//   const orders = await Order.find({ user: req.user.id })
-//     .populate("products.product");
-
-//   res.json(orders);
-// };
-
-// export const getOrderById = async (req: Request, res: Response) => {
-//   const order = await Order.findById(req.params.id)
-//     .populate("products.product");
-
-//   if (!order) {
-//     return res.status(404).json({ message: "Order not found" });
-//   }
-
-//   res.json(order);
-// };
+export const getAllOrdersFromDB = async (userData: any) => {
+  if (userData.role === "user") {
+    const orders = await Order.find({ user: userData.id })
+      .populate("user", "name email")
+      .populate("products.product", "name price");
+    return orders;
+  }
+  const orders = await Order.find()
+    .populate("user", "name email")
+    .populate("products.product", "name price");  
+  return orders;
+}
